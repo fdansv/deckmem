@@ -1,0 +1,14 @@
+{
+  "name": "deckmem",
+  "version": "1.0.0",
+  "description": "Tiny app to memorise decks of cards without an actual deck because you don't feel like buying one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francisco Dans",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}
