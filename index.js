@@ -6,6 +6,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+var figuremapping = {
+	'S': '♠', 'D': '♦', 'H': '♥', 'C': '♣'
+}
 var figures = [ '♠', '♦'.red, '♥'.red, '♣']
 var ONE_FIGURE = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
@@ -30,10 +33,23 @@ var redeck = []
 
 function iterate() {
 	var card = deck.pop()
-	rl.question('--> ' + card, function () {
-		redeck.push(card)
-		iterate()
-	})
+	if (card) {
+		rl.question('--> ' + card.replace(/%\w+%/g, function(all) {
+		   return replacements[all] || all;
+		}), function () {
+			redeck.push(card)
+			iterate()
+		})
+	} else {
+		console.log('Deck finished, now start recalling!')
+		card = redeck.shift()
+		rl.question('--> ' + card, function (reply) {
+			if (card === reply){
+				console.log ("correct!")
+			}
+			iterate()
+		})
+	}
 }
 
 iterate()
